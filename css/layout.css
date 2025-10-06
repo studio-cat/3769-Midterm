@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .landing-page {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: var(--color-bg);
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    gap:0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.row-block{
+    --w: 300px;
+    flex: 0 0 var(--w); 
+    display: flex;
+    align-items: center;      
+    justify-content: center;     
+    /* border-inline: 1px solid #222; */
+}
