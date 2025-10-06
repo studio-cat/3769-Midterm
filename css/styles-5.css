@@ -1,0 +1,45 @@
+html, body { margin: 0; height: 100%; background:#0b0b0b; color:#fff; }
+
+.vine-stage {
+  position: relative;
+  height: 500vh;              /* how long the scroll sequence is */
+}
+
+.headline {
+  position: sticky; top: 10vh; z-index: 2;
+  text-align: center;
+  padding: 2rem 1rem;
+  font-family: 'Playfair Display', serif;
+}
+.headline .quote { display:block; font-size: clamp(1.2rem, 3vw, 2.4rem); }
+.headline .ref   { display:block; opacity:.7; margin-top:.5rem; font-size: clamp(.9rem, 1.8vw, 1.2rem); }
+
+.vine-svg {
+  position: sticky; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.25));
+}
+
+/* vine drawing setup; JS will set stroke-dasharray/offset */
+#vinePath { will-change: stroke-dashoffset; }
+
+.spacer { height: 400vh; }     /* extra space so you can scroll through the growth */
+
+/* leaf appearance animation */
+.leaf {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  opacity: 0;
+  scale: .8;
+  transition: opacity .45s ease, scale .45s ease;
+}
+.leaf.visible {
+  opacity: 1;
+  scale: 1;
+}
+
+/* reduced motion: show fully grown */
+@media (prefers-reduced-motion: reduce) {
+  #vinePath { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+  .leaf { opacity: 1 !important; scale: 1 !important; transition: none !important; }
+}

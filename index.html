@@ -34,25 +34,90 @@
     <canvas id="starfield" aria-hidden="true"></canvas>
         <div class = "universe">
 
-                <!-- TITLE HERE -->
+                <!-- LANDING PAGE TITLE -->
                 <div class = "row">
-                
-                    <div class = "row-block" style="--w: 300px; justify-content: flex-end; "><p class="subtitle">where did </p></div>
-
+                    <div class = "row-block" style="--w: 300px; justify-content: flex-end; ">
+                        <p class="subtitle">where did </p>
+                    </div>
                     <div class = "row-block">
                         <div id="random-text">YOU &amp; I</div>
-                        <script src="js/script.js"></script>
+                        <!-- <script src="js/script.js"></script> -->
                     </div>
-
-                    <div class = "row-block" style="--w:300px;justify-content: flex-start;"><p class="subtitle">come from?</p></div>
-
-
+                    <div class = "row-block" style="--w:300px;justify-content: flex-start;">
+                        <p class="subtitle">come from?</p>
+                    </div>
                 </div>
+
+                <div class="subheadline"></div>
+
+                <!-- AUDIO PLAYER -->
+                <audio id="SoWillI" src="assets/audio/so-will-i.mp3" preload="auto"></audio>
+                <button id="startMusic">click to begin</button>
+
                 
+                <div class="fade-lines">
+                    <p>Preface</p>
+                    <p>It is a miracle that I am alive today. </p>
+                    <p>3 years ago, I wrote in my journal: </p>
+                    <p>“There is no reason to live. But, </p>
+                        <p> I should not act impulsively.</p>
+                            <p> The next 3 years will be a test. </p>
+                                <p> I will live to the best of my ability, </p>
+                                    <p> to see if there is really anything </p>
+                                        <p>  truly worth living for. </p>
+                                            <p> Then, I will decide.”</p>
+                    <p>For those hurting, lamenting, searching, wondering:</p>
+                    <p>this is my testimony of how I am drowning in deep, deep grace.</p>
+                    
+                </div>
+                <a href="search.html" 
+                style="
+                    display: inline-block;
+                    opacity: 0;
+                    animation: fadeInLink 1s ease forwards;
+                    animation-delay: 50s;
+                    font-family: Helvetica, Arial, sans-serif;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    color: white;
+                    text-decoration: none;
+                    letter-spacing: 1px;
+                ">
+                ENTER
+                </a>
 
+                <style>
+                @keyframes fadeInLink {
+                from { opacity: 0; transform: translateY(10px); }
+                to   { opacity: 1; transform: translateY(0); }
+                }
+                </style>
+
+                
+                <script src="js/audio.js"></script>
+                <script>
+                    const player = setupAudioPlayback('SoWillI', 'startMusic',47,2);
+                    const btn = document.getElementById('startMusic');
+                    const startCanvas = document.getElementById('starfield');
+                    const titles = document.querySelectorAll('.subtitle, #random-text');
+                    const lines = document.querySelector('.fade-lines');
+
+                    btn.addEventListener('click', () => {
+                        setTimeout(() => startCanvas.classList.add('show'), 1300);
+                        titles.forEach(el => el.classList.add('light'));
+                        setTimeout(() => {
+                            lines.classList.add('show');
+                        }, 3500);
+                        });
+                  </script>
+        
         <script src="js/universe.js"></script>
-        </div>
+        <script src="js/script.js"></script>
 
+
+        <!-- ADD HYPERLINK TO NEXT PAGE -->        <!-- PUT SENTENCES IN A BOX -->
+                
+</div>
 
 </body>
 </html>

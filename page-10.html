@@ -1,12 +1,41 @@
-<div class="headline">
-    <span class="static">we are both&nbsp;</span>
-    <span class="rotator" aria-live="polite">
-      <span class="rotator-track">
-        <span class="word">artists</span>
-        <span class="word">analysts</span>
-        <span class="word">builders</span>
-        <span class="word">storytellers</span>
-        <span class="word">friends</span>
-      </span>
-    </span>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles-10.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <section class="typewriter-section">
+        <p id="typewriter-text"></p>
+      
+      <script>
+        const text = `For God so loved the world
+            that he gave his one and only Son
+            that whoever believes in Him
+            shall not perish but have eternal life.
+
+            John 3:16`;
+        
+        const el = document.getElementById('typewriter-text');
+        let i = 0;
+        const speed = 100; // typing speed in ms per character
+        
+        function typeWriter() {
+          if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+          }
+        }
+        
+        window.addEventListener('load', typeWriter);
+        </script>
+
+</section>
+</body>
+</html>

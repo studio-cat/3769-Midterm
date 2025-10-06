@@ -168,3 +168,23 @@
     window.addEventListener('resize', resize);
     init();
   })();
+
+
+  const cursorLight = document.querySelector('.cursor-light');
+  let mouseX = 0, mouseY = 0;
+  let lightX = 0, lightY = 0;
+  const speed = 0.15; // smaller = slower follow
+  
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  
+  function animate() {
+    lightX += (mouseX - lightX) * speed;
+    lightY += (mouseY - lightY) * speed;
+    cursorLight.style.left = `${lightX}px`;
+    cursorLight.style.top = `${lightY}px`;
+    requestAnimationFrame(animate);
+  }
+  animate();

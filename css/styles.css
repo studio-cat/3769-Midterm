@@ -34,20 +34,18 @@
     display: block;
     width: 100%;
     height: 100%;
-    z-index: 0;
+    /* z-index: -1;  */
+    opacity: 0;
+    transition: opacity 1.5s ease;  /* ✨ smooth fade */
+    pointer-events: none;
     box-shadow: inset 0 0 240px rgba(0,0,0,0.6);
   }
 
-  .universe {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    display: grid;
-    text-align: center;
-    padding: 6rem 1.25rem; */
+  #starfield.show {
+    opacity: 1;
+  }
 
+  .universe {
     display: flex;
     flex-direction: column;   /* stacks children vertically */
     justify-content: center; /* centers them vertically */
@@ -78,13 +76,84 @@
   }
 
 
-  /* ----------------------------------------- */
-
-  #grain {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    mix-blend-mode: overlay;
-    opacity: 0.08;
-    z-index: 9999;
+  .fade-lines {
+    width: 25vw;              /* middle 25% of viewport width */
+    margin: 0 auto;           /* center horizontally */
+    text-align: center;       /* optional: center the text itself */
   }
+  
+  .fade-lines p {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 2s ease, transform 2s ease;
+    color: rgb(166, 164, 152);
+    font-family: "Helvetica", sans-serif;
+    font-size: 1vw;
+    font-style: italic;
+  }
+  
+  .fade-lines.show p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .fade-lines.show p:nth-child(1) { transition-delay: 0s; }
+  .fade-lines.show p:nth-child(2) { transition-delay: 4s; }
+  .fade-lines.show p:nth-child(3) { transition-delay: 8s; }
+  .fade-lines.show p:nth-child(4) { transition-delay: 12s; }
+  .fade-lines.show p:nth-child(5) { transition-delay: 16s; }
+  .fade-lines.show p:nth-child(6) { transition-delay: 20s; }
+  .fade-lines.show p:nth-child(7) { transition-delay: 24s; }
+  .fade-lines.show p:nth-child(8) { transition-delay: 28s; }
+  .fade-lines.show p:nth-child(9) { transition-delay: 32s; }
+  .fade-lines.show p:nth-child(10) { transition-delay: 36s; }
+  .fade-lines.show p:nth-child(11) { transition-delay: 40s; }
+  .fade-lines.show p:nth-child(12) { transition-delay: 44s; }
+
+
+
+/* ----------------------------------------- */
+/* AUDIO PLAYER */
+/* ----------------------------------------- */
+
+  #startMusic {
+    background: none;
+    border: none;
+    color: white;
+    font-style: italic;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 0; 
+  }
+
+  #startMusic:hover {
+    text-decoration: underline; 
+  }
+
+  #startMusic {
+    transition: color 2s ease; 
+    color: rgb(0, 0, 0);   
+    margin: 0.2em 0;
+    }
+    
+/* ---------------- */
+
+
+/* body {
+    cursor: none;
+  } */
+
+/* .cursor-light {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 70%);
+    mix-blend-mode: screen;  /* makes the glow blend nicely */
+    /* transform: translate(-50%, -50%);
+    transition: transform 0.05s linear;
+    z-index: 9999;
+  }  */

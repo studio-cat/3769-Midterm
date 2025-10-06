@@ -1,0 +1,22 @@
+.typewriter-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;               /* center on page */
+    background: black;
+    color: white;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+  }
+  
+  #typewriter-text {
+    border-right: 2px solid white;   /* blinking cursor */
+    white-space: pre-wrap;          /* preserve line breaks */
+    overflow: hidden;
+    max-width: 90ch;
+    animation: blink-caret 0.8s steps(1) infinite;
+    font-family: 'Courier New', Courier, monospace !important;
+  }
+  
+  @keyframes blink-caret {
+    50% { border-color: transparent; }
+  }

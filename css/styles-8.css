@@ -1,0 +1,55 @@
+/* Page baseline */
+html, body { margin: 0; padding: 0; background: #000; color: #fff; }
+
+/* Stage holds the sticky headline and the snapping scroller */
+.rotator-stage {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Sticky headline */
+.headline {
+  position: sticky;
+  top: 25vh;                     /* where the line sits */
+  padding: 0 6vw;
+  font-size: clamp(1.6rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  z-index: 2;
+}
+.static { white-space: nowrap; }
+
+/* Rotator visuals */
+.rotator { display: inline-block; height: 1em; overflow: hidden; vertical-align: bottom; }
+.rotator-track {
+  display: inline-flex;
+  flex-direction: column;
+  will-change: transform;
+  transition: transform 520ms cubic-bezier(.22,.61,.36,1); /* smooth ease each step */
+}
+.word { display: block; line-height: 1em; height: 1em; }
+
+/* Scroll-snap container */
+.snapper {
+  position: relative;
+  height: 500vh;                 /* controls total number of screens; JS will size too */
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;              /* this element scrolls */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each step is one viewport high and snap-aligned */
+.step {
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+/* Optional: a faint guide background per step */
+.step:nth-child(odd)  { background: rgba(255,255,255,0.02); }
+.step:nth-child(even) { background: rgba(255,255,255,0.00); }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .rotator-track { transition: none !important; }
+  .snapper { scroll-snap-type: none; }
+}

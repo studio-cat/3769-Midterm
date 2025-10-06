@@ -6,11 +6,25 @@
     font-weight: 600;
     text-align: center;
     font-style: italic;
-    color: white;
+    color: black;
+
   }
 
-    
-  #random-text {
+#random-text {
     font-size: 2rem;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
   }
+
+
+#random-text, 
+.subtitle {
+    transition: color 2s ease; /* smooth color change */
+    color: rgb(0, 0, 0);               /* start black */
+    margin: 0.2em 0;
+    }
+
+#random-text.light,
+.subtitle.light {
+  color: white;          
+}
+    

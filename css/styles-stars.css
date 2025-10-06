@@ -1,0 +1,173 @@
+#fx-root { position: fixed; inset: 0; z-index: 9990; pointer-events: none; }
+#fx-canvas   { position: absolute; inset: 0; z-index: 1; background: transparent; }
+#fx-twinkles { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+#fx-cursor   { position: absolute; left: 0; top: 0; z-index: 3; pointer-events: none; }
+
+.fx-twinkle {
+  position: absolute; width: 2px; height: 2px; border-radius: 999px;
+  background: radial-gradient(circle, #ffffff, #ffffff 50%, transparent 72%);
+  box-shadow: 0 0 10px 2px #ffffff;
+  animation: fx-flicker var(--dur,1600ms) ease-in-out forwards;
+  z-index: 1; 
+}
+.fx-twinkle.big {
+  width: 10px; height: 10px;
+  box-shadow: 0 0 30px 8px #96ecff, 0 0 80px 20px #e9f3ff;
+  filter: blur(.2px);
+  pointer-events: auto; /* only big stars are clickable */
+  cursor: pointer;
+  animation: fx-pulse var(--dur,2200ms) ease-in-out forwards;
+  z-index: 1; 
+}
+
+.fx-twinkle.big::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+@keyframes fx-flicker {
+  0%   { opacity: 0; transform: translate(0,0) scale(.2); }
+  18%  { opacity: .95; transform: translate(var(--dx,0),var(--dy,0)) scale(1); }
+  65%  { opacity: .55; }
+  100% { opacity: 0; transform: translate(calc(var(--dx,0)*2),calc(var(--dy,0)*2)) scale(.85); }
+}
+@keyframes fx-pulse {
+  0%   { opacity: 0; transform: translate(0,0) scale(.4); }
+  22%  { opacity: 1; transform: translate(var(--dx,0),var(--dy,0)) scale(1.6); }
+  72%  { opacity: .85; transform: translate(calc(var(--dx,0)*1.6),calc(var(--dy,0)*1.6)) scale(1); }
+  100% { opacity: 0; transform: translate(calc(var(--dx,0)*2.2),calc(var(--dy,0)*2.2)) scale(.9); }
+}
+
+/* ------------------------------------- */
+
+/* bright cursor dot */
+#fx-cursor {
+  position: fixed; left: 0; top: 0; translate: -50% -50%;
+  width: 10px; height: 10px; border-radius: 999px;
+  background: radial-gradient(circle at 50% 50%, #fff, #cfe3ff 95%, transparent 65%);
+  box-shadow: 0 0 18px 6px #7fb7ff, 0 0 40px 12px #dff0ff;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* full-screen drawing surface */
+#fx-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; /* never intercept clicks */
+}
+
+
+
+/* -------------------------- */
+
+.headline {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;              /* highest layer */
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1vw;
+  font-style: italic;
+  color: white;
+  text-align: center;
+  opacity: 0;
+  animation: fadeText 3.5s ease-in-out infinite;
+}
+
+@keyframes fadeText {
+  0%   { opacity: 0; }
+  25%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.subheadline {
+  position: fixed;
+  top: 58%;  /* below the headline */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  text-align: center;
+  transition: opacity 0.8s ease; /* 👈 smooth fade */
+}
+
+.music-button {
+  background: none;
+  border: none;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 1vw;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 1s ease;   
+  animation: showButton 1s ease forwards;
+  animation-delay: 22s   
+}
+
+@keyframes showButton {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
+.music-button:hover {
+  opacity: 0.7;
+}
+
+.hide-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  /* border: 1px solid white; */
+  color: white;
+  padding: 6px 12px;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  cursor: pointer;
+  z-index: 100000;
+}
+
+
+
+
+
+/* ===== POPUP OVERLAY ===== */
+#popup-overlay{
+  position:fixed; inset:0; display:none;
+  align-items:center; justify-content:center;
+  background:rgba(0,0,0,0.55); backdrop-filter:blur(10px);
+  z-index:999999;
+}
+#popup-box{
+  position:relative; max-width:640px; width:min(92vw,640px);
+  background:rgba(255, 255, 255, 0.05); color:#f5f7ff;
+  border:1px solid rgba(255,255,255,.12); border-radius:16px;
+  padding:20px 24px 24px;
+}
+#popup-close{ position:absolute; top:10px; right:12px; background:none; border:0; color:#cfe9ff; font-size:20px; cursor:pointer; }
+
+.popup-body {
+  font-family: Helvetica;
+  font-style: italic;
+  font-size: 1rem;
+  color: white;
+  line-height: 1.6;
+  text-align: left;
+  margin-top: 10px;
+}
+
+#fx-canvas{ z-index:0; pointer-events:none; }            /* keep canvas underneath */
+#fx-twinkles{ position:absolute; inset:0; z-index:1; }  /* stars above canvas */
+.fx-twinkle, .fx-twinkle.big{ z-index:1; }              /* below the modal */
