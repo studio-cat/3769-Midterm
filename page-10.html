@@ -12,11 +12,23 @@
 
     <section class="typewriter-section">
         <p id="typewriter-text"></p>
+
+
+
+
+        
+    <script>
+        const player = setupAudioPlayback('LoveNote', 'startMusic',55,2);
+        const btn = document.getElementById('startMusic');
+      </script>
+      <script src="js/audio.js"></script>
+      
+
       
       <script>
-        const text = `For God so loved the world
+        const text = `For God so loved you
             that he gave his one and only Son
-            that whoever believes in Him
+            that once you believe in Him you
             shall not perish but have eternal life.
 
             John 3:16`;
@@ -35,6 +47,32 @@
         
         window.addEventListener('load', typeWriter);
         </script>
+
+
+    <a href="index.html" 
+                    style="
+                        display: inline-block;
+                        opacity: 0;
+                        animation: fadeInLink 1s ease forwards;
+                        animation-delay: 20s;
+                        font-family: Helvetica, Arial, sans-serif;
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        color: white;
+                        text-decoration: none;
+                        letter-spacing: 1px;
+                    ">
+                    start over
+                    </a>
+
+                    <style>
+                    @keyframes fadeInLink {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to   { opacity: 1; transform: translateY(0); }
+                    }
+                    </style>
+
+
 
 </section>
 </body>
